@@ -1,16 +1,23 @@
-
-const express = require("express");
-const cors = require("cors");
+const express = require('express');
+const cors = require('cors'); // ✅ Import CORS
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+const PORT = process.env.PORT || 3000;
 
+// ✅ Allow CORS for all origins
+app.use(cors());
+
+// Default homepage route
 app.get("/", (req, res) => {
-  res.send("Backend is running!");
+    res.send("Backend is running!");
 });
 
-const PORT = process.env.PORT || 5000;
+// Example GET route
+app.get("/your-endpoint", (req, res) => {
+    res.json({ message: "Your endpoint is working!" });
+});
+
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
